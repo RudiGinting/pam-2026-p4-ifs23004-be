@@ -46,7 +46,7 @@ fun Application.configureRouting() {
 
     routing {
         get("/") {
-            call.respondText("API telah berjalan. Dibuat oleh [Nama Anda].")
+            call.respondText("API telah berjalan. Dibuat oleh Rudi Alva Jonathan Ginting.")
         }
 
         // Route Plants

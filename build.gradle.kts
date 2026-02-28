@@ -15,7 +15,6 @@ version = "0.0.1"
 application {
     mainClass = "org.delcom.ApplicationKt"
 }
-
 dependencies {
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-server-netty")

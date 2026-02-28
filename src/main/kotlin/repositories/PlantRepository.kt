@@ -1,5 +1,6 @@
 package org.delcom.repositories
 
+
 import org.delcom.dao.PlantDAO
 import org.delcom.entities.Plant
 import org.delcom.helpers.daoToModel
@@ -86,5 +87,4 @@ class PlantRepository : IPlantRepository {
         }
         rowsDeleted == 1
     }
-
 }
