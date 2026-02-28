@@ -1,0 +1,657 @@
+# obat
+## Global Variabel
+#@BaseUrl = https://pam-2026-p4-ifs18005-be.delcom.org:8080
+@BaseUrl = http://127.0.0.1:8000
+
+## Profile
+## ===========================================
+
+### Mengambil data profile
+# @name GetProfile
+GET {{BaseUrl}}/profile
+Content-Type: application/json
+
+### Mengambil photo profil
+# @name GetProfilePhoto
+GET {{BaseUrl}}/profile/photo
+Content-Type: application/json
+
+
+## Plants (Tanaman)
+## ===========================================
+
+### [P1] Mengambil semua data tanaman
+# @name GetAllPlants
+GET {{BaseUrl}}/plants?search=
+Content-Type: application/json
+
+> {%
+    if (response.body.data && response.body.data.plants && response.body.data.plants.length > 0) {
+        client.global.set("plantId", response.body.data.plants[0].id);
+        console.log("✅ PlantId diset ke: " + client.global.get("plantId"));
+    }
+%}
+
+### [P2] Menambahkan data tanaman baru - Lidah Buaya
+# @name PostPlantsLidahBuaya
+POST {{BaseUrl}}/plants
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Lidah Buaya
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Lidah buaya adalah tanaman sukulen yang dikenal dengan daunnya yang tebal dan berdaging, mengandung gel yang bermanfaat untuk kesehatan kulit dan rambut.
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Menyuburkan rambut, melembabkan kulit, mempercepat penyembuhan luka bakar, dan melancarkan pencernaan.
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Penggunaan berlebihan dapat menyebabkan iritasi kulit pada beberapa orang, dan konsumsi gel lidah buaya yang tidak diolah dengan benar dapat menyebabkan kram perut.
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="lidah_buaya.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+> {%
+    if (response.body.data && response.body.data.plantId) {
+        client.global.set("plantId", response.body.data.plantId);
+        console.log("✅ PlantId (Lidah Buaya) tersimpan: " + client.global.get("plantId"));
+    }
+%}
+
+### [P3] Menambahkan data tanaman baru - Jahe
+# @name PostPlantsJahe
+POST {{BaseUrl}}/plants
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Jahe
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Jahe adalah tanaman rempah yang memiliki rimpang dengan aroma khas, sering digunakan sebagai bumbu masakan dan bahan obat tradisional.
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Menghangatkan tubuh, meredakan mual, mengatasi masuk angin, mengurangi nyeri haid, dan meningkatkan sistem imun.
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Konsumsi berlebihan dapat menyebabkan heartburn, iritasi mulut, dan gangguan pencernaan. Tidak dianjurkan untuk penderita gangguan pembekuan darah.
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="jahe.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+> {%
+    if (response.body.data && response.body.data.plantId) {
+        client.global.set("plantId", response.body.data.plantId);
+        console.log("✅ PlantId (Jahe) tersimpan: " + client.global.get("plantId"));
+    }
+%}
+
+### [P4] Menambahkan data tanaman baru - Kunyit
+# @name PostPlantsKunyit
+POST {{BaseUrl}}/plants
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Kunyit
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Kunyit adalah tanaman rempah dengan rimpang berwarna kuning oranye, mengandung kurkumin yang memiliki sifat anti-inflamasi dan antioksidan.
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Meningkatkan daya tahan tubuh, meredakan peradangan, melancarkan pencernaan, mengatasi nyeri haid, dan menjaga kesehatan hati.
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Konsumsi dosis tinggi dapat menyebabkan gangguan pencernaan, mual, dan diare. Dapat berinteraksi dengan obat pengencer darah.
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="kunyit.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+> {%
+    if (response.body.data && response.body.data.plantId) {
+        client.global.set("plantId", response.body.data.plantId);
+        console.log("✅ PlantId (Kunyit) tersimpan: " + client.global.get("plantId"));
+    }
+%}
+
+### [P5] Menambahkan data tanaman baru - Sambiloto
+# @name PostPlantsSambiloto
+POST {{BaseUrl}}/plants
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Sambiloto
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Sambiloto adalah tanaman herbal yang dikenal dengan rasa pahitnya, sering digunakan dalam pengobatan tradisional untuk berbagai penyakit.
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Menurunkan demam, mengatasi diabetes, meningkatkan imunitas, mengobati infeksi saluran napas, dan membantu detoksifikasi hati.
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Dapat menyebabkan kelelahan, sakit kepala, dan gangguan pencernaan. Tidak dianjurkan untuk ibu hamil dan menyusui.
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="sambiloto.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+> {%
+    if (response.body.data && response.body.data.plantId) {
+        client.global.set("plantId", response.body.data.plantId);
+        console.log("✅ PlantId (Sambiloto) tersimpan: " + client.global.get("plantId"));
+    }
+%}
+
+### [P6] Mengambil data tanaman berdasarkan ID
+# @name GetPlantById
+GET {{BaseUrl}}/plants/{{plantId}}
+Content-Type: application/json
+
+### [P7] Melihat gambar tanaman
+# @name GetPlantImageById
+GET {{BaseUrl}}/plants/{{plantId}}/image
+Content-Type: application/json
+
+### [P8] Mengubah data tanaman (tanpa gambar)
+# @name PutPlantOnlyData
+PUT {{BaseUrl}}/plants/{{plantId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Jahe Merah
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Jahe merah adalah varietas jahe dengan ukuran lebih kecil dan rasa lebih pedas, berkhasiat lebih kuat untuk obat.
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Lebih efektif untuk menghangatkan tubuh, mengatasi masuk angin berat, dan meredakan nyeri sendi.
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Rasa pedasnya dapat menyebabkan iritasi lambung jika dikonsumsi berlebihan.
+--WebAppBoundary--
+
+### [P9] Mengubah data tanaman (dengan gambar)
+# @name PutPlantWithImage
+PUT {{BaseUrl}}/plants/{{plantId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Kunyit Putih
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Kunyit putih adalah tanaman herbal yang sering digunakan sebagai antikanker dan meningkatkan imunitas.
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Mencegah pertumbuhan sel kanker, meningkatkan stamina, dan mengatasi gangguan pencernaan.
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Dapat menurunkan tekanan darah, tidak dianjurkan untuk penderita hipotensi.
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="kunyit_putih.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+### [P10] Menghapus data tanaman
+# @name DeletePlant
+DELETE {{BaseUrl}}/plants/{{plantId}}
+Content-Type: application/json
+
+> {%
+    if (response.status === 200) {
+        console.log("✅ Data tanaman berhasil dihapus");
+        client.global.set("plantId", "");
+    }
+%}
+
+
+
+
+### [O1] Mengambil semua data obat
+# @name GetAllObat
+GET {{BaseUrl}}/obat?search=
+Content-Type: application/json
+
+> {%
+    if (response.body.data && response.body.data.obat && response.body.data.obat.length > 0) {
+        client.global.set("obatId", response.body.data.obat[0].id);
+        console.log("✅ ObatId diset ke: " + client.global.get("obatId"));
+    }
+%}
+
+### [O2] Menambahkan data obat baru - Paracetamol
+# @name PostObatParacetamol
+POST {{BaseUrl}}/obat
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Paracetamol
+--WebAppBoundary
+Content-Disposition: form-data; name="kategori"
+
+Analgesik & Antipiretik
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Paracetamol adalah obat untuk meredakan nyeri ringan hingga sedang dan menurunkan demam. Bekerja dengan memengaruhi pusat pengatur suhu di otak.
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Meredakan sakit kepala, sakit gigi, nyeri otot, nyeri haid, dan demam.
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Mual, ruam kulit, gangguan fungsi hati jika dosis berlebihan (lebih dari 4000mg/hari).
+--WebAppBoundary
+Content-Disposition: form-data; name="dosis"
+
+Dewasa: 500-1000mg setiap 4-6 jam, maksimal 4000mg/hari. Anak-anak: 10-15mg/kg berat badan setiap 4-6 jam.
+--WebAppBoundary
+Content-Disposition: form-data; name="peringatan"
+
+Hindari konsumsi alkohol, tidak boleh melebihi dosis yang dianjurkan, hati-hati pada penderita gangguan fungsi hati.
+--WebAppBoundary
+Content-Disposition: form-data; name="bentukSediaan"
+
+Tablet 500mg, Sirup 120mg/5ml, Sirup 250mg/5ml, Kapsul, Suppositoria.
+--WebAppBoundary
+Content-Disposition: form-data; name="golongan"
+
+Obat Bebas
+--WebAppBoundary
+Content-Disposition: form-data; name="kontraindikasi"
+
+Hipersensitif terhadap paracetamol, gangguan fungsi hati berat.
+--WebAppBoundary
+Content-Disposition: form-data; name="interaksiObat"
+
+Warfarin (meningkatkan risiko perdarahan), alkohol (meningkatkan risiko hepatotoksisitas), obat-obatan hepatotoksik lainnya.
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="paracetamol.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+> {%
+    if (response.body.data && response.body.data.obatId) {
+        client.global.set("obatId", response.body.data.obatId);
+        console.log("✅ ObatId (Paracetamol) tersimpan: " + client.global.get("obatId"));
+    }
+%}
+
+### [O3] Menambahkan data obat baru - Ibuprofen
+# @name PostObatIbuprofen
+POST {{BaseUrl}}/obat
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Ibuprofen
+--WebAppBoundary
+Content-Disposition: form-data; name="kategori"
+
+Anti-inflamasi Non-steroid (AINS)
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Ibuprofen adalah obat golongan AINS yang bekerja dengan menghambat produksi prostaglandin, sehingga mengurangi nyeri, peradangan, dan demam.
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Mengatasi nyeri sendi, sakit gigi, nyeri haid, nyeri otot, peradangan, dan demam.
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Gangguan pencernaan (mual, nyeri ulu hati), mual, sakit kepala, pusing, retensi cairan.
+--WebAppBoundary
+Content-Disposition: form-data; name="dosis"
+
+Dewasa: 200-400mg setiap 4-6 jam, maksimal 1200mg/hari (tanpa resep) atau 3200mg/hari (dengan resep dokter).
+--WebAppBoundary
+Content-Disposition: form-data; name="peringatan"
+
+Hindari pada pasien dengan riwayat tukak lambung, gangguan ginjal, dan asma. Konsumsi setelah makan untuk mengurangi iritasi lambung.
+--WebAppBoundary
+Content-Disposition: form-data; name="bentukSediaan"
+
+Tablet 200mg, 400mg, Sirup 100mg/5ml.
+--WebAppBoundary
+Content-Disposition: form-data; name="golongan"
+
+Obat Bebas Terbatas
+--WebAppBoundary
+Content-Disposition: form-data; name="kontraindikasi"
+
+Riwayat alergi aspirin atau AINS lainnya, tukak lambung aktif, gangguan ginjal berat, trimester ketiga kehamilan.
+--WebAppBoundary
+Content-Disposition: form-data; name="interaksiObat"
+
+Aspirin (meningkatkan risiko perdarahan), antikoagulan, diuretik, lithium, metotreksat.
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="ibuprofen.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+> {%
+    if (response.body.data && response.body.data.obatId) {
+        client.global.set("obatId", response.body.data.obatId);
+        console.log("✅ ObatId (Ibuprofen) tersimpan: " + client.global.get("obatId"));
+    }
+%}
+
+### [O4] Menambahkan data obat baru - Amoxicillin
+# @name PostObatAmoxicillin
+POST {{BaseUrl}}/obat
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Amoxicillin
+--WebAppBoundary
+Content-Disposition: form-data; name="kategori"
+
+Antibiotik (Penisilin)
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Amoxicillin adalah antibiotik golongan penisilin yang bekerja dengan membunuh bakteri atau menghentikan pertumbuhannya. Efektif untuk berbagai infeksi bakteri.
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Infeksi saluran pernapasan (bronkitis, pneumonia), infeksi telinga, infeksi saluran kemih, infeksi kulit, dan infeksi tenggorokan.
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Diare, mual, ruam kulit, muntah, dan infeksi jamur. Reaksi alergi serius jarang terjadi.
+--WebAppBoundary
+Content-Disposition: form-data; name="dosis"
+
+Dewasa: 500mg setiap 8 jam atau 875mg setiap 12 jam selama 7-10 hari (sesuai resep dokter).
+--WebAppBoundary
+Content-Disposition: form-data; name="peringatan"
+
+Harus dihabiskan sesuai resep dokter meskipun sudah merasa sembuh. Hati-hati pada pasien dengan alergi penisilin.
+--WebAppBoundary
+Content-Disposition: form-data; name="bentukSediaan"
+
+Kapsul 500mg, Sirup 125mg/5ml, Sirup 250mg/5ml.
+--WebAppBoundary
+Content-Disposition: form-data; name="golongan"
+
+Obat Keras (dengan resep dokter)
+--WebAppBoundary
+Content-Disposition: form-data; name="kontraindikasi"
+
+Alergi penisilin atau sefalosporin.
+--WebAppBoundary
+Content-Disposition: form-data; name="interaksiObat"
+
+Kontrasepsi oral (dapat mengurangi efektivitas), allopurinol (meningkatkan risiko ruam kulit), probenesid.
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="amoxicillin.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+> {%
+    if (response.body.data && response.body.data.obatId) {
+        client.global.set("obatId", response.body.data.obatId);
+        console.log("✅ ObatId (Amoxicillin) tersimpan: " + client.global.get("obatId"));
+    }
+%}
+
+### [O5] Menambahkan data obat baru - CTM
+# @name PostObatCTM
+POST {{BaseUrl}}/obat
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+CTM (Chlorpheniramine Maleate)
+--WebAppBoundary
+Content-Disposition: form-data; name="kategori"
+
+Antihistamin
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+CTM adalah obat antihistamin yang digunakan untuk meredakan gejala alergi dengan cara menghambat efek histamin dalam tubuh.
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Meredakan gejala alergi seperti bersin-bersin, hidung berair, mata gatal, biduran, dan reaksi alergi lainnya.
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Mengantuk, lemas, mulut kering, pusing, gangguan koordinasi. Tidak dianjurkan mengemudi setelah konsumsi.
+--WebAppBoundary
+Content-Disposition: form-data; name="dosis"
+
+Dewasa: 4mg setiap 4-6 jam, maksimal 24mg/hari. Anak-anak: 2mg setiap 4-6 jam.
+--WebAppBoundary
+Content-Disposition: form-data; name="peringatan"
+
+Hati-hati pada penderita glaukoma, pembesaran prostat, dan gangguan saluran kemih. Dapat menyebabkan kantuk.
+--WebAppBoundary
+Content-Disposition: form-data; name="bentukSediaan"
+
+Tablet 4mg, Sirup 2mg/5ml.
+--WebAppBoundary
+Content-Disposition: form-data; name="golongan"
+
+Obat Bebas Terbatas
+--WebAppBoundary
+Content-Disposition: form-data; name="kontraindikasi"
+
+Hipersensitif terhadap antihistamin, sedang menggunakan MAOI, asma akut.
+--WebAppBoundary
+Content-Disposition: form-data; name="interaksiObat"
+
+Alkohol (meningkatkan efek sedasi), obat penenang, antidepresan, MAOI.
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="ctm.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+> {%
+    if (response.body.data && response.body.data.obatId) {
+        client.global.set("obatId", response.body.data.obatId);
+        console.log("✅ ObatId (CTM) tersimpan: " + client.global.get("obatId"));
+    }
+%}
+
+### [O6] Mengambil data obat berdasarkan ID
+# @name GetObatById
+GET {{BaseUrl}}/obat/{{obatId}}
+Content-Type: application/json
+
+### [O7] Melihat gambar obat
+# @name GetObatImageById
+GET {{BaseUrl}}/obat/{{obatId}}/image
+Content-Type: application/json
+
+### [O8] Mengubah data obat (tanpa gambar)
+# @name PutObatOnlyData
+PUT {{BaseUrl}}/obat/{{obatId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Paracetamol Sirup
+--WebAppBoundary
+Content-Disposition: form-data; name="kategori"
+
+Analgesik Anak
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Paracetamol sirup untuk anak-anak, membantu menurunkan demam dan meredakan nyeri ringan.
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Menurunkan demam pada anak, meredakan nyeri tumbuh gigi, sakit kepala ringan.
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Mual ringan, gangguan pencernaan pada beberapa anak.
+--WebAppBoundary
+Content-Disposition: form-data; name="dosis"
+
+Anak 1-2 tahun: 5ml (120mg) 3-4 kali sehari. Anak 3-6 tahun: 10ml (240mg) 3-4 kali sehari.
+--WebAppBoundary
+Content-Disposition: form-data; name="peringatan"
+
+Gunakan sendok takar yang tersedia. Konsultasikan dengan dokter jika demam lebih dari 3 hari.
+--WebAppBoundary
+Content-Disposition: form-data; name="bentukSediaan"
+
+Sirup 120mg/5ml, Sirup 250mg/5ml
+--WebAppBoundary
+Content-Disposition: form-data; name="golongan"
+
+Obat Bebas
+--WebAppBoundary
+Content-Disposition: form-data; name="kontraindikasi"
+
+Hipersensitif terhadap paracetamol
+--WebAppBoundary
+Content-Disposition: form-data; name="interaksiObat"
+
+Konsultasikan dengan dokter jika anak sedang menggunakan obat lain.
+--WebAppBoundary--
+
+### [O9] Mengubah data obat (dengan gambar)
+# @name PutObatWithImage
+PUT {{BaseUrl}}/obat/{{obatId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Ibuprofen Forte
+--WebAppBoundary
+Content-Disposition: form-data; name="kategori"
+
+Anti-inflamasi
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Ibuprofen dengan dosis lebih tinggi untuk nyeri berat.
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Mengatasi nyeri sendi kronis, nyeri pasca operasi ringan.
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Gangguan pencernaan, pusing.
+--WebAppBoundary
+Content-Disposition: form-data; name="dosis"
+
+Dewasa: 400mg setiap 6-8 jam.
+--WebAppBoundary
+Content-Disposition: form-data; name="peringatan"
+
+Konsumsi setelah makan.
+--WebAppBoundary
+Content-Disposition: form-data; name="bentukSediaan"
+
+Tablet 400mg
+--WebAppBoundary
+Content-Disposition: form-data; name="golongan"
+
+Obat Keras
+--WebAppBoundary
+Content-Disposition: form-data; name="kontraindikasi"
+
+Tukak lambung
+--WebAppBoundary
+Content-Disposition: form-data; name="interaksiObat"
+
+Antikoagulan
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="ibuprofen_forte.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+### [O10] Menghapus data obat
+# @name DeleteObat
+DELETE {{BaseUrl}}/obat/{{obatId}}
+Content-Type: application/json
+
+> {%
+    if (response.status === 200) {
+        console.log("✅ Data obat berhasil dihapus");
+        client.global.set("obatId", "");
+    }
+%}
+
+### [O11] Filter obat berdasarkan golongan
+# @name GetObatByGolongan
+GET {{BaseUrl}}/obat?search=Obat Bebas
+Content-Type: application/json
+
+### [O12] Filter obat berdasarkan nama
+# @name GetObatByNama
+GET {{BaseUrl}}/obat?search=Paracetamol
+Content-Type: application/json
+
+### [O13] Filter obat berdasarkan kategori
+# @name GetObatByKategori
+GET {{BaseUrl}}/obat?search=Antibiotik
+Content-Type: application/json
