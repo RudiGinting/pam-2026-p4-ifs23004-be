@@ -1,8 +1,8 @@
 # obat
 ## Global Variabel
 #@BaseUrl = https://pam-2026-p4-ifs18005-be.delcom.org:8080
-@BaseUrl = http://127.0.0.1:8000
-
+#@BaseUrl = http://127.0.0.1:8000
+@BaseUrl = https://pam-2026-p4-ifs23004-be.rudijonathan.fun:8080/
 ## Profile
 ## ===========================================
 
