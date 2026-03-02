@@ -21,20 +21,11 @@ class ProfileService {
                     |Halo! Saya Rudi Alva Jonathan Ginting, seorang mahasiswa Informatika yang memiliki 
                     |ketertarikan mendalam di dunia pengembangan aplikasi mobile, khususnya Android.
                     |
-                    |🚀 Pengalaman & Keahlian:
-                    |• Android Development (Kotlin, Jetpack Compose)
-                    |• Backend API Development (Ktor, Retrofit, PostgreSQL)
-                    |• Arsitektur Aplikasi (MVVM, Clean Architecture)
-                    |• Database Management (SQL, Room, Exposed)
-                    |
                     |💡 Filosofi Saya:
                     |Saya percaya bahwa teknologi harus memberikan dampak positif bagi masyarakat. 
                     |Setiap baris kode yang saya tulis adalah upaya untuk menciptakan solusi yang 
                     |bermanfaat, efisien, dan mudah digunakan.
                     |
-                    |📚 Saat ini saya sedang fokus mendalami pengembangan aplikasi berbasis AI 
-                    |dan terus mengeksplorasi teknologi-teknologi baru yang dapat meningkatkan 
-                    |kualitas hidup pengguna.
                     |
                     |🤝 Mari berkolaborasi dan belajar bersama!
                 """.trimMargin().replace("\n", " ").trim()
