@@ -17,17 +17,9 @@ class ProfileService {
                 "nama" to "Rudi Alva Jonathan Ginting",
                 "tentang" to """
                     |🌟 Tentang Saya:
-                    |
                     |Halo! Saya Rudi Alva Jonathan Ginting, seorang mahasiswa Informatika yang memiliki 
                     |ketertarikan mendalam di dunia pengembangan aplikasi mobile, khususnya Android.
-                    |
-                    |💡 Filosofi Saya:
-                    |Saya percaya bahwa teknologi harus memberikan dampak positif bagi masyarakat. 
-                    |Setiap baris kode yang saya tulis adalah upaya untuk menciptakan solusi yang 
-                    |bermanfaat, efisien, dan mudah digunakan.
-                    |
-                    |
-                    |🤝 Mari berkolaborasi dan belajar bersama!
+  
                 """.trimMargin().replace("\n", " ").trim()
             )
         )
