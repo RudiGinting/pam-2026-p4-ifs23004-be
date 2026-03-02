@@ -7,15 +7,37 @@ import org.delcom.data.DataResponse
 import java.io.File
 
 class ProfileService {
-    // Mengambil semua data tumbuhan
+    // Mengambil data profile pengembang
     suspend fun getProfile(call: ApplicationCall) {
         val response = DataResponse(
-            "success",
-            "Berhasil mengambil profile pengembang",
-            mapOf(
-                Pair("username", "abdullah.ubaid"),
-                Pair("nama", "Abdullah Ubaid"),
-                Pair("tentang", "Saya adalah seorang developer yang tertarik pada mobile development, backend API, dan berbagai teknologi pengembangan aplikasi. Senang belajar hal baru dan membangun aplikasi yang berguna."),
+            status = "success",
+            message = "✅ Profil pengembang berhasil dimuat",
+            data = mapOf(
+                "username" to "ifs23004",
+                "nama" to "Rudi Alva Jonathan Ginting",
+                "tentang" to """
+                    |🌟 Tentang Saya:
+                    |
+                    |Halo! Saya Rudi Alva Jonathan Ginting, seorang mahasiswa Informatika yang memiliki 
+                    |ketertarikan mendalam di dunia pengembangan aplikasi mobile, khususnya Android.
+                    |
+                    |🚀 Pengalaman & Keahlian:
+                    |• Android Development (Kotlin, Jetpack Compose)
+                    |• Backend API Development (Ktor, Retrofit, PostgreSQL)
+                    |• Arsitektur Aplikasi (MVVM, Clean Architecture)
+                    |• Database Management (SQL, Room, Exposed)
+                    |
+                    |💡 Filosofi Saya:
+                    |Saya percaya bahwa teknologi harus memberikan dampak positif bagi masyarakat. 
+                    |Setiap baris kode yang saya tulis adalah upaya untuk menciptakan solusi yang 
+                    |bermanfaat, efisien, dan mudah digunakan.
+                    |
+                    |📚 Saat ini saya sedang fokus mendalami pengembangan aplikasi berbasis AI 
+                    |dan terus mengeksplorasi teknologi-teknologi baru yang dapat meningkatkan 
+                    |kualitas hidup pengguna.
+                    |
+                    |🤝 Mari berkolaborasi dan belajar bersama!
+                """.trimMargin().replace("\n", " ").trim()
             )
         )
         call.respond(response)
@@ -26,7 +48,11 @@ class ProfileService {
         val file = File("uploads/profile/me.png")
 
         if (!file.exists()) {
-            return call.respond(HttpStatusCode.NotFound)
+            return call.respond(HttpStatusCode.NotFound, DataResponse(
+                status = "error",
+                message = "❌ Foto profil tidak ditemukan. Pastikan file berada di uploads/profile/me.png",
+                data = null
+            ))
         }
 
         call.respondFile(file)
